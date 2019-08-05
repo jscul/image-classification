@@ -32,7 +32,6 @@ from tensorflow.python.util import compat
 
 
 class FLAGS(object):
-    bottleneck_dir = "tf_files/bottlenecks"
     model_dir = 'tf_files/models/"${ARCHITECTURE}"'
     output_graph = "tf_files/retrained_graph.pb"
     output_labels = "tf_files/retrained_labels.txt"
@@ -51,7 +50,7 @@ class FLAGS(object):
     validation_batch_size = 100
     print_misclassified_test_images = False
     model_dir = "/tmp/imagenet"
-    bottleneck_dir = "/tmp/bottleneck"
+    bottleneck_dir = "tf_files/bottlenecks"
     final_tensor_name = "final_result"
     flip_left_right = False
     random_crop = 0
@@ -322,9 +321,10 @@ def maybe_download_and_extract(data_url):
 def ensure_dir_exists(dir_name):
     """Makes sure the folder exists on disk.
 
-  Args:
-    dir_name: Path string to the folder we want to create.
-  """
+        Args:
+
+            dir_name: Path string to the folder we want to create.
+    """
     if not os.path.exists(dir_name):
         os.makedirs(dir_name)
 
@@ -948,7 +948,6 @@ def save_graph_to_file(sess, graph, graph_file_name):
 
 def prepare_file_system():
     # Setup the directory we'll write summaries to for TensorBoard
-    print(FLAGS)
     if tf.gfile.Exists(FLAGS.summaries_dir):
         tf.gfile.DeleteRecursively(FLAGS.summaries_dir)
     tf.gfile.MakeDirs(FLAGS.summaries_dir)

@@ -1,1 +1,1 @@
-Image Classification for the Owl Shop
+Image Classification for the OwlShop
